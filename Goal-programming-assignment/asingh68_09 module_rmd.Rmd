@@ -1,0 +1,92 @@
+---
+title: "Goal-programming-assignment-QMM"
+author: "ANURODH-SINGH"
+date: "2023-11-26"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+
+# CONCLUSION
+
+•	The penalty for y1, representing the change in the current level of employment, is expressed using two variables: y1+ (the amount over the current employment level goal of 5000 employees) and y1- (the amount under the current employment level goal of 5000 employees). Similarly, y2 represents the penalty for the change in next year’s earnings from the current year’s level, with the variables y2+ (amount over the next year’s earnings from the current year’s level) and y2- (amount under the next year’s earnings from the current year’s level).
+
+•	Linear programming models are formulated using p, q, r, s in terms of y1+, y1-, y2+, y2- respectively. Now, let x1 be the production rate (number of products) of product 1, x2 for product 2, and x3 for product 3 to achieve maximum profit.
+
+•	To maximize the target function, the objective function utilizes x1, x2, and x3 as combination units. The corporation should produce 15 units of Product 3 the only product in order to increase profits.
+
+•	The goal was to stabilize the employment level with a maximum of 5000 employees, but the firm has to exceed the employment levels by 2500 employees (y1+), leading to a penalty.
+
+•	Variables y2+ and y2- were designed to capture the increase or decrease in next year’s earnings from the current level, which, in this case, is "0," indicating no change in next year’s earnings compared to the current year. As a result, earnings for the following year remain stable.
+
+•	The objective function value, $225 million, represents the profit that the firm seeks to maximize in this particular case.
+
+***
+
+# SUMMARY
+
+•	The "lpSolveAPI" library was installed to enable linear programming problem solving.
+
+•	The objective of this decision-making scenario for Emax Corporation's new products is to maximize the expression Z = P - 6C - 3D, where P represents total discounted profit, C denotes the change in employment, and D signifies the decrease in next year's earnings.
+
+•	Management, prioritizing profit, workforce stability, and a modest earnings increase, formulates goals and employs goal programming. The linear programming model is expressed in an "Goal-pr.lp" file, defining the objective function and constraints.
+
+•	Upon solving, the optimal solution indicates a maximum objective value of 225, with production rates for the three products and specific values for employment and earnings adjustments.
+
+•	This analysis aligns with management's goals and aids in decision-making for product production.
+
+# PROBLEM STATEMENT
+
+
+The Research and Development Division of the Emax Corporation has developed three new
+products. A decision now needs to be made on which mix of these products should be produced.
+Management wants primary consideration given to three factors: total profit, stability in the
+workforce, and achieving an increase in the company’s earnings next year from the $75 million
+achieved this year. In particular, using the units given in the following table, they want to
+
+Maximize Z = P - 6C - 3D, 
+
+where,
+
+P = total (discounted) profit over the life of the new products,
+C = change (in either direction) in the current level of employment,
+D = decrease (if any) in next year’s earnings from the current year’s level.
+
+The amount of any increase in earnings does not enter into Z, because management is concerned
+primarily with just achieving some increase to keep the stockholders happy. (It has mixed
+feelings about a large increase that then would be difficult to surpass in subsequent years.)
+
+1. Define y1+ and y1-, respectively, as the amount over (if any) and the amount under (if any)
+   the employment level goal. Define y2+ and y2- in the same way for the goal regarding
+   earnings next year. Define x1, x2, and x3 as the production rates of Products 1, 2, and 3,
+   respectively. With these definitions, use the goal programming technique to express y1+,
+   y1- , y2+ and y2- algebraically in terms of x1, x2, and x3. Also express P in terms of x1, x2,
+   and x3.
+2. Express management’s objective function in terms of x1, x2, x3, y1+, y1- , y2+ and y2-.
+3. Formulate and solve the linear programming model. What are your findings?
+
+
+```{r setup, include=FALSE, results='hide'}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(lpSolveAPI)
+```
+
+Q2.Express management’s objective function in terms of x1, x2, x3, y1+, y1- , y2+ and y2-.
+```{r}
+x <- read.lp("C:/Users/ASUS/Desktop/GOAL-PR-ASSIGNMENT-QMM/Goal-pr.lp")
+x                          
+```
+Q3.Formulate and solve the linear programming model. What are your findings?
+```{r}
+solve(x)
+get.objective(x)        # get objective value
+get.variables(x)        # get values of decision variables
+get.constraints(x)      # get constraint RHS values
+```
+
